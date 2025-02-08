@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div id="formContainer" class="container active">
+      <h2>Digite seus dados para começar</h2>
+      <input type="text" id="name" placeholder="Nome" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <button onclick="startGame()">Começar</button>
+    </div>
+
+    <div id="gameContainer" class="container">
+      <div class="timer">
+        Tempo restante: <span id="timer">20</span> segundos
+      </div>
+      <div class="score-board">Pontuação: <span id="score">0</span></div>
+      <div class="game-board" id="gameBoard"></div>
+    </div>
+
+    <div id="resultContainer" class="container">
+      <h2>Fim do Jogo!</h2>
+      <p>Sua pontuação: <span id="finalScore">0</span></p>
+      <button onclick="restartGame()">Jogar Novamente</button>
+    </div>
+
+    <script src="./scripts.js"></script>
+  </body>
+</html>

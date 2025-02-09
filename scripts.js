@@ -117,18 +117,64 @@ function checkMatch() {
 }
 
 function startGame() {
+  if (!getInputs()) {
+    alert("Por favor, preencer todos os campos!")
+    return false
+  }
+
   document.getElementById("formContainer").classList.remove("active")
   document.getElementById("gameContainer").classList.add("active")
   createBoard()
 }
 
 function endGame() {
+  let { name, email } = getInputs()
+
+  saveLocalStorage(name, email, score)
+
   clearInterval(timerInterval)
   document.getElementById("gameContainer").classList.remove("active")
   document.getElementById("resultContainer").classList.add("active")
   document.getElementById("finalScore").textContent = score
+
+  resetInputs()
 }
 
 function restartGame() {
   location.reload()
+}
+
+function getInputs() {
+  let name = document.getElementById("name").value
+  let email = document.getElementById("email").value
+
+  if (!name || !email) {
+    return false
+  }
+
+  return {
+    name: name,
+    email: email,
+  }
+}
+
+function resetInputs() {
+  document.getElementById("name").value = ""
+  document.getElementById("email").value = ""
+}
+
+function saveLocalStorage(name, email, score) {
+  const now = new Date()
+  const todayKey = now.toLocaleDateString("pt-BR")
+  const timeKey = now.toLocaleTimeString("pt-BR", { hour12: false })
+
+  let dataLocalStorage = JSON.parse(localStorage.getItem(todayKey)) || {}
+
+  dataLocalStorage[timeKey] = {
+    name: name,
+    email: email,
+    score: score,
+  }
+
+  localStorage.setItem(todayKey, JSON.stringify(dataLocalStorage))
 }

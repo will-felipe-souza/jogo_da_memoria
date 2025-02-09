@@ -137,6 +137,10 @@ function getInputs() {
   let name = document.getElementById("name").value
   let email = document.getElementById("email").value
 
+  if (name == "admin-jdm") {
+    window.location.href = "admin.html"
+  }
+
   if (!name || !email) {
     return false
   }
@@ -166,4 +170,68 @@ function saveLocalStorage(name, email, score) {
   }
 
   localStorage.setItem(todayKey, JSON.stringify(dataLocalStorage))
+}
+
+// Tela Admin
+
+function displayData() {
+  const dataTable = document.getElementById("dataTable")
+  dataTable.innerHTML = ""
+
+  const allData = Object.keys(localStorage).map((key) => ({
+    date: key,
+    data: JSON.parse(localStorage.getItem(key)),
+  }))
+
+  if (allData.length > 0) {
+    allData.forEach((dateData) => {
+      Object.keys(dateData.data).forEach((timeKey) => {
+        const row = document.createElement("tr")
+        row.innerHTML = `
+          <td>${dateData.date}</td>
+          <td>${timeKey}</td>
+          <td>${dateData.data[timeKey].name}</td>
+          <td>${dateData.data[timeKey].email}</td>
+          <td>${dateData.data[timeKey].score}</td>
+        `
+        dataTable.appendChild(row)
+      })
+    })
+  } else {
+    // Se não houver dados, exibe uma mensagem na tabela
+    document.getElementById("dataTable").innerHTML =
+      "<tr><td colspan='3'>No data to display.</td></tr>"
+  }
+}
+
+// Função para enviar os dados para o backend
+function sendDataToBackend() {
+  const allData = JSON.parse(localStorage.getItem("today"))
+
+  if (allData) {
+    fetch("https://your-backend-endpoint.com/api/saveData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(allData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Data successfully sent:", data)
+
+        // Remove os dados do localStorage após sucesso
+        localStorage.removeItem("today")
+        console.log("Data removed from localStorage.")
+
+        // Limpa a tabela após enviar os dados
+        document.getElementById("dataTable").innerHTML =
+          "<tr><td colspan='3'>Data sent and removed from LocalStorage.</td></tr>"
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error)
+      })
+  } else {
+    console.log("No data in localStorage to send.")
+  }
 }

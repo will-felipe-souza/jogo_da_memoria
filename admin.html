@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mostrar Dados e Enviar</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Dados Salvos no LocalStorage:</h2>
+    <button onclick="sendDataToBackend()">Send Data to Backend</button>
+
+    <!-- Tabela para exibir os dados -->
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Pontuação</th>
+        </tr>
+      </thead>
+      <tbody id="dataTable">
+        <!-- Dados serão preenchidos aqui -->
+      </tbody>
+    </table>
+
+    <script src="scripts.js"></script>
+    <script>
+      window.onload = displayData
+    </script>
+  </body>
+</html>

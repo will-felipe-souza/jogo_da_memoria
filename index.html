@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Memória</title>
@@ -16,8 +21,9 @@
     </div>
 
     <div id="gameContainer" class="container">
+      <img class="main-logo" src="logo-hypera.svg" alt="logo principal">
       <div class="timer">
-        Tempo restante: <span id="timer">20</span> segundos
+        00:<span id="timer">20</span>
       </div>
       <div class="score-board">Pontuação: <span id="score">0</span></div>
       <div class="game-board" id="gameBoard"></div>

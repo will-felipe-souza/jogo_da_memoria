@@ -1,39 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family), sans-serif;
+}
+
+:root {
+  /* ADICIONANDO FONTES */
+  --font-family: "Asap", sans-serif;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  background-color: #0361AA;
 }
+
+.main-logo {
+  margin-inline: auto;
+  width: 70%;
+}
+
+#gameContainer {
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6rem;
+  height: 100vh;
+}
+
 .container {
   display: none;
   text-align: center;
 }
+
+.timer {
+  color: #ffffff;
+  font-size: 4.5rem;
+  font-weight: 600;
+}
+
 .active {
   display: block;
 }
 .game-board {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4.5rem;
 }
 .card {
-  width: 100px;
-  height: 100px;
-  background-color: #3498db;
+  width: 10rem;
+  height: 14rem;
+  background: #3498db url(pattern-back-card.svg) repeat center / 7%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 5rem;
   color: white;
   cursor: pointer;
   border-radius: 8px;
+  border: 8px solid #ffffff;
   user-select: none;
 }
+
+.card-logo-back {
+  width: 60%;
+}
+
 .flipped {
-  background-color: #2ecc71;
+  background: #2ecc71;
 }
 
 /* Tela Admin */
@@ -53,4 +91,8 @@ th,
 td {
   padding: 8px;
   text-align: left;
+}
+
+.score-board {
+  display: none;
 }

@@ -52,10 +52,18 @@ function createBoard() {
   shuffledCards.forEach((emoji, index) => {
     const card = document.createElement("div")
     card.classList.add("card")
+    
+    const cardLogoBack = document.createElement("img")
+    cardLogoBack.setAttribute("src", "logo-back-card.svg")
+    cardLogoBack.classList.add("card-logo-back")
+    
+    card.append(cardLogoBack)
     card.dataset.emoji = emoji
     card.dataset.index = index
+    
     card.addEventListener("click", flipCard)
-    gameBoard.appendChild(card)
+
+    gameBoard.append(card)
   })
   startTimer()
 }
@@ -112,7 +120,7 @@ function startGame() {
   }
 
   document.getElementById("formContainer").classList.remove("active")
-  document.getElementById("gameContainer").classList.add("active")
+  document.getElementById("gameContainer").style.display = "flex"
   createBoard()
 }
 
@@ -122,7 +130,7 @@ function endGame() {
   saveLocalStorage(name, email, score)
 
   clearInterval(timerInterval)
-  document.getElementById("gameContainer").classList.remove("active")
+  document.getElementById("gameContainer").style.display = "none"
   document.getElementById("resultContainer").classList.add("active")
   document.getElementById("finalScore").textContent = score
 
